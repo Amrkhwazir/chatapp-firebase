@@ -1,5 +1,3 @@
-import ChatRoom from "./compnents/ChatRoom";
-import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 

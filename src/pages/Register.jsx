@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { auth, createUserWithEmailAndPassword, db, doc, setDoc, query, where, getDocs } from '../../firebase'
+import { auth, createUserWithEmailAndPassword, db, doc, setDoc,} from '../../firebase'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {

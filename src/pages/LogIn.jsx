@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { auth, signInWithEmailAndPassword } from '../../firebase'
+import { auth,signInWithEmailAndPassword } from '../../firebase'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -7,22 +7,22 @@ const [loginEmail, setLoginEmail] = useState("")
 const [loginPassword, setLoginPassword] = useState("")
 const navigate = useNavigate();
 
-const login = async () => {
-
-    console.log();
-   await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        login(user)
-        navigate("/inbox")
-
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-    
+const loginHandler = async (e) => {
+  e.preventDefault()
+ console.log(loginEmail, loginPassword);
+ signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log(user);
+    navigate("/inbox")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage);
+    // ..
+  });
 }
 
   return (
@@ -31,10 +31,8 @@ const login = async () => {
   <div className="sm:mx-auto sm:w-full sm:max-w-sm">
   <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Log In in to your account</h2>
   </div>
-
   <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form className="space-y-6" method='POST' onSubmit={login}>
-    
+    <form className="space-y-6" method='POST' onSubmit={loginHandler}>
       <div>
         <label for="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
         <div className="mt-2">

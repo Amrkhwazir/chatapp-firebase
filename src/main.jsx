@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client"
 import App from "./App.jsx"
 import "./index.css"
 import ChatRoom from "./compnents/ChatRoom.jsx"
-import Login from "./pages/Login.jsx"
 import "./index.css";
 import {
   createBrowserRouter,
@@ -15,10 +14,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />
-  },
-  {
-    path: "/login",
-    element: <Login />
   },
   {
     path: "/inbox",

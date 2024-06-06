@@ -7,8 +7,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import ChatRoom from './compnents/ChatRoom.jsx';
-import Login from './pages/Login.jsx';
+import ChatRoom from "./compnents/ChatRoom.jsx";
+import Login from "./pages/Login.jsx";
 
 
 const router = createBrowserRouter([

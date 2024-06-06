@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { auth, createUserWithEmailAndPassword, db, doc, setDoc, query, where, getDocs } from '../../firebase'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
 const [username, setUsername] = useState("")
@@ -24,7 +24,7 @@ const register = async (e) => {
       id: user.uid
     });
     console.log("data added successfully");
-    navigate("/inbox")
+    navigate("/login")
 
   })
   .catch((error) => {
@@ -72,6 +72,11 @@ const register = async (e) => {
 
       <div>
         <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+      </div>
+      <div>
+        <Link to={"/login"}> 
+        <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">log in</button>
+        </Link>
       </div>
     </form>
   </div>

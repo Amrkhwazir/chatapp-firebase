@@ -8,11 +8,16 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import ChatRoom from './compnents/ChatRoom.jsx';
+import Login from './pages/LogIn.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />
+  },
+  {
+    path: "/login",
+    element: <Login />
   },
   {
     path: "/inbox",

@@ -85,15 +85,14 @@ getAllusers();
  });
  
  console.log("message sent");
+ setMessage("")
 
 }
  
 
    // open chat for single user
 
-   function singleListUser (user) {
-
-     
+ function singleListUser (user) {     
      let chatID; 
      if(currentUser.id < listUser.id){
        chatID = currentUser.id + listUser.id
@@ -101,15 +100,15 @@ getAllusers();
    chatID = listUser.id + currentUser.id
  }
  
- const q = query(collection(db, "messages"), orderBy("timestamp"), where("chatID", "==", chatID));
+ const q = query(collection (db, "messages"), orderBy("timestamp"), where("chatID", "==", chatID));
  const unsubscribe = onSnapshot(q, (querySnapshot) => {
    const messages = [];
    querySnapshot.forEach((doc) => {
      messages.push(doc.data());
      });
-  
      setShowMessage(messages)
      });
+
      setListUser(user)
      
   } ;
@@ -119,34 +118,33 @@ getAllusers();
 
 function logoutHandler(){
   signOut(auth).then(() => {
-    // Sign-out successful.
+
     console.log("signout successfully")
     navigate("/")
 
 }).catch((error) => {
-    // An error happened.
     console.log(error);
 });
 
 }
 
   return (
-    <div className='flex justify-center w-full h-screen bg-slate-200 relative'>
+    <div className='flex justify-center w-full h-screen  relative bg-gray-200'>
       <div className='absolute left-8 top-16'>
       <p>Username: {logUser?.username.toUpperCase()}</p>
       <p>Email: {logUser?.email}</p>
       <button className='bg-blue-900 w-20 h-10 text-white rounded-md mt-4' onClick={logoutHandler}>SignOut</button>
       </div>
-      <div className='w-40 h-[550px] bg-slate-50 mt-8 px-3 '>
+      <div className='w-40 h-[550px] bg-white mt-8 px-3 overflow-y-scroll rounded-md '>
     { getusers.map((user) => (
-      <li className='list-none bg-slate-300 rounded-md h-20 mt-5 p-2 pt-5 text-sm cursor-pointer' key={user.id} onClick={() => singleListUser(user)}>
+      <li className='list-none bg-blue-900 text-white rounded-md h-20 mt-5 p-2 pt-5 text-sm cursor-pointer text-wrap' key={user.id} onClick={() => singleListUser(user)}>
       <p>{user?.username}</p>
       <p>{user?.email}</p>
     </li>
     ))}
     
   </div>
-    <div className='w-[600px] h-[550px] bg-gray-800 mt-8'>
+    <div className='w-[600px] h-[550px] bg-white mt-8'>
       <div>
      <TopbarInfo listUser={listUser} />
         <div className='w-full h-[450px] p-4 relative overflow-y-scroll'>
@@ -157,12 +155,12 @@ function logoutHandler(){
               
               if(currentUser.id == data.sender){
 
-                return  <div key={indx} className='bg-slate-300 w-36 h-10 rounded-md p-2 mt-5 ml-[380px]'>
+                return  <div key={indx} className='bg-blue-900 text-white w-36 h-10 rounded-md p-2 mt-5 ml-[380px]'>
                 <p>{data.message}</p>
                   </div>
                 } else{
                   
-            return  <div key={indx} className='bg-slate-300 w-24 h-10 rounded-md p-2 mt-5'>
+            return  <div key={indx} className='bg-white text-blue-900 w-24 h-10 rounded-md p-2 mt-5'>
               <p>{data.message}</p>
               </div>
   
@@ -172,8 +170,8 @@ function logoutHandler(){
 
             
         </div>
-        <div className='bg-slate-300 w-full h-[50px]'>
-            <input type="text" placeholder='Enter your message' className='w-5/6 h-[48px] text-zinc-800 bg-slate-300 focus:outline-none pl-4' onChange={(e) => setMessage(e.target.value)} />
+        <div className='bg-blue-900 w-full h-[50px] rounded-br-md'>
+            <input type="text" placeholder='Enter your message' value={message} className='w-5/6 h-[48px] bg-transparent text-white focus:outline-none pl-4' onChange={(e) => setMessage(e.target.value)} />
             <button className='bg-blue-900 w-20 h-10 text-white rounded-md' onClick={() => sendMessage(message)} >Send</button>
         </div>
       </div>

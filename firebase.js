@@ -11,7 +11,6 @@ const firebaseConfig = {
   storageBucket: "signup-form-cadc3.appspot.com",
   messagingSenderId: "219653567561",
   appId: "1:219653567561:web:a6c333de827309adcc3b98",
-  databaseURL: "https://signup-form-cadc3-default-rtdb.asia-southeast1.firebasedatabase.app",
 
 };
 
